@@ -11,7 +11,7 @@ const config = {
 export type User = { id: string; name: string };
 async function getAll(): Promise<BadRequest | Error | User[]> {
   try {
-    const response = await fetch(`${config.url}/user`, {
+    const response = await fetch(`${config.url}/users`, {
       ...config.options,
     });
 
