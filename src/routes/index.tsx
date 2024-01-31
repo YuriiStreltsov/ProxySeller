@@ -11,6 +11,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    ErrorBoundary: ErrorBoundary,
     children: [
       {
         index: true,
@@ -19,7 +20,6 @@ export const router = createBrowserRouter([
       },
       {
         path: ":userId/posts",
-        ErrorBoundary: ErrorBoundary,
         Component: Posts,
       },
       {

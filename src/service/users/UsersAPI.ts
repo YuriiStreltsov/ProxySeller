@@ -1,5 +1,4 @@
-import { responseHandler } from "../handlers";
-import { ApiResponse, BadRequest } from "../types";
+import { requestHandler } from "../requestHandler";
 
 const config = {
   url: "https://jsonplaceholder.typicode.com",
@@ -9,22 +8,12 @@ const config = {
 };
 
 export type User = { id: string; username: string };
-async function getAll(): Promise<BadRequest | Error | User[]> {
-  try {
-    const response = await fetch(`${config.url}/users`, {
-      ...config.options,
-    });
+async function getAll<TResponse>() {
+  const users = await requestHandler<TResponse>(`${config.url}/users`, {
+    ...config.options,
+  });
 
-    if (!response.ok) {
-      throw new Error(`Request failed with status ${response.status}`);
-    }
-
-    const data = await responseHandler<User[]>(response as ApiResponse<User[]>);
-    return data;
-  } catch (error) {
-    console.error("Error fetching users:", error);
-    throw error;
-  }
+  return users;
 }
 
 export default { getAll };
