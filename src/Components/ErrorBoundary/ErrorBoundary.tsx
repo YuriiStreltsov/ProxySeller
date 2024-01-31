@@ -1,7 +1,7 @@
 import { useRouteError } from "react-router-dom";
 
 import EmojiImg from "./emoji.webp";
-import s from "./ErrorBoundary.module.css";
+import s from "./ErrorBoundary.module.scss";
 
 export default function ErrorBoundary() {
   const error = useRouteError() as Error;
