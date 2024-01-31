@@ -1,12 +1,7 @@
-import ErrorBoundary from "./Components/ErrorBoundary";
-import Users from "./pages/Users/Users";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
+import "./styles/index.scss";
 
-const App = () => {
-  return (
-    <ErrorBoundary>
-      <Users />
-    </ErrorBoundary>
-  );
-};
-
-export default App;
+export default function App() {
+  return <RouterProvider router={router} fallbackElement={<p>Loading...</p>} />;
+}
