@@ -4,6 +4,7 @@ import {
   useParams,
   useRouteLoaderData,
 } from "react-router-dom";
+import ErrorBoundary from "src/Components/ErrorBoundary";
 import SimplePost from "src/Components/SimplePost";
 import PostsAPI, { type Post } from "src/service/posts/PostsAPI";
 import { User } from "src/service/users/UsersAPI";
@@ -26,9 +27,21 @@ export default function UserPost() {
 
   const user = users.find((user) => user.id.toString() === userId);
 
+  if (!user) {
+    return (
+      <div className="container">
+        <ErrorBoundary message="User not found " />
+      </div>
+    );
+  }
+
   return (
     <div className="container">
-      <SimplePost username={user ? user.username : "Noname"} post={posts[0]} />
+      {posts.length > 0 ? (
+        <SimplePost username={user.username} post={posts[0]} />
+      ) : (
+        <ErrorBoundary message="Post not found" />
+      )}
     </div>
   );
 }

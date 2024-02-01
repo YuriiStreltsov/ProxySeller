@@ -3,7 +3,11 @@ import { useRouteError } from "react-router-dom";
 import EmojiImg from "./emoji.webp";
 import s from "./ErrorBoundary.module.scss";
 
-export default function ErrorBoundary() {
+type ErrorBoundaryProps = {
+  message?: string;
+};
+
+export default function ErrorBoundary({ message }: ErrorBoundaryProps) {
   const error = useRouteError() as Error;
 
   return (
@@ -14,7 +18,9 @@ export default function ErrorBoundary() {
           style={{ backgroundImage: `url(${EmojiImg})` }}
         ></div>
         <h1 className={s.text}>OOPS! SOMETHING WENT WRONG</h1>
-        <p className={s.text}>{error ? error.message : "Not found"}</p>
+        <p className={s.text}>
+          {error ? error.message : message || "Not found"}
+        </p>
       </div>
     </div>
   );
