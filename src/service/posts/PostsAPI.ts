@@ -14,6 +14,14 @@ export type Post = {
   body: string;
 };
 
+export type Comment = {
+  postId: string;
+  id: string;
+  name: string;
+  email: string;
+  body: string;
+};
+
 async function getPostsByUserId<TResponse>(id: string) {
   const posts = await requestHandler<TResponse>(
     `${config.url}/users/${id}/posts`,
@@ -35,4 +43,15 @@ async function getPostById<TResponse>(userId: string, postId: string) {
   return posts;
 }
 
-export default { getPostsByUserId, getPostById };
+async function getUserComments<TResponse>(postId: string) {
+  const comments = await requestHandler<TResponse>(
+    `${config.url}/posts/${postId}/comments`,
+    {
+      ...config.options,
+    }
+  );
+
+  return comments;
+}
+
+export default { getPostsByUserId, getPostById, getUserComments };

@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from "react";
 import AlbumsAPI, { type Photos as TPhotos } from "src/service/album/AlbumsAPI";
-import styles from "./Photos.module.scss";
+import styles from "./PhotoGallery.module.scss";
 
 type PhotoGalleryProps = {
   albumId: string;
