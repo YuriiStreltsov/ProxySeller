@@ -19,5 +19,12 @@ async function getPostsByUserId<TResponse>(id: string) {
 
   return posts;
 }
+async function getPostById<TResponse>(id: string) {
+  const posts = await requestHandler<TResponse>(`${config.url}/posts/${id}`, {
+    ...config.options,
+  });
 
-export default { getPostsByUserId };
+  return posts;
+}
+
+export default { getPostsByUserId, getPostById };

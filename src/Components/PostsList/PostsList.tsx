@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Post } from "src/service/users/PostsAPI";
+import { Post } from "src/service/posts/PostsAPI";
 
 type PostsListType = {
   posts: Post[];

@@ -4,9 +4,8 @@ import RootLayout from "src/Components/RootLayout";
 import Albums from "src/pages/Albums";
 import UserAlbum from "src/pages/Albums/UserAlbum";
 import Home, { homeLoader } from "src/pages/Home";
-import Posts from "src/pages/Posts";
-import { postsLoader } from "src/pages/Posts/Posts";
-import UserPost from "src/pages/Posts/UserPost";
+import Posts, { postsLoader } from "src/pages/Posts";
+import UserPost, { postLoader } from "src/pages/UserPost";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: ":userId/posts/:postId",
+        loader: postLoader,
         Component: UserPost,
       },
       {
