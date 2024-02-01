@@ -7,11 +7,16 @@ const config = {
   },
 };
 
-export type Post = { userId: string; id: string; title: string; body: string };
+export type Post = {
+  userId: number;
+  id: string;
+  title: string;
+  body: string;
+};
 
 async function getPostsByUserId<TResponse>(id: string) {
   const posts = await requestHandler<TResponse>(
-    `${config.url}/posts?/userId=${id}`,
+    `${config.url}/users/${id}/posts`,
     {
       ...config.options,
     }
@@ -19,10 +24,13 @@ async function getPostsByUserId<TResponse>(id: string) {
 
   return posts;
 }
-async function getPostById<TResponse>(id: string) {
-  const posts = await requestHandler<TResponse>(`${config.url}/posts/${id}`, {
-    ...config.options,
-  });
+async function getPostById<TResponse>(userId: string, postId: string) {
+  const posts = await requestHandler<TResponse>(
+    `${config.url}/user/${userId}/posts?id=${postId}`,
+    {
+      ...config.options,
+    }
+  );
 
   return posts;
 }

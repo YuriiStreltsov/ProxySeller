@@ -1,6 +1,6 @@
 import { useLoaderData, useParams, useRouteLoaderData } from "react-router-dom";
 import { Params } from "react-router-dom";
-import PostsList from "src/Components/PostsList/PostsList";
+import PostsList from "src/Components/PostsList";
 import PostsAPI, { Post } from "src/service/posts/PostsAPI";
 import { User } from "src/service/users/UsersAPI";
 

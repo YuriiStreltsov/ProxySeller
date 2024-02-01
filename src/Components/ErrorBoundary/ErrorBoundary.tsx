@@ -5,7 +5,6 @@ import s from "./ErrorBoundary.module.scss";
 
 export default function ErrorBoundary() {
   const error = useRouteError() as Error;
-  console.log(error.cause);
 
   return (
     <div className={s.page}>
@@ -15,7 +14,7 @@ export default function ErrorBoundary() {
           style={{ backgroundImage: `url(${EmojiImg})` }}
         ></div>
         <h1 className={s.text}>OOPS! SOMETHING WENT WRONG</h1>
-        <p className={s.text}>{error.message}</p>
+        <p className={s.text}>{error ? error.message : "Not found"}</p>
       </div>
     </div>
   );

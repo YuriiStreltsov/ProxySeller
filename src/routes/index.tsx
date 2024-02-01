@@ -6,18 +6,20 @@ import UserAlbum from "src/pages/Albums/UserAlbum";
 import Home, { homeLoader } from "src/pages/Home";
 import Posts, { postsLoader } from "src/pages/Posts";
 import UserPost, { postLoader } from "src/pages/UserPost";
+import UsersAPI from "src/service/users/UsersAPI";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     id: "root",
-    loader: homeLoader,
+    loader: async () => await UsersAPI.getAll(),
     Component: RootLayout,
     ErrorBoundary: ErrorBoundary,
     children: [
       {
         index: true,
         Component: Home,
+        loader: homeLoader,
       },
       {
         path: ":userId/posts",
