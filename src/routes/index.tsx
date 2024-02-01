@@ -5,21 +5,24 @@ import Albums from "src/pages/Albums";
 import UserAlbum from "src/pages/Albums/UserAlbum";
 import Home, { homeLoader } from "src/pages/Home";
 import Posts from "src/pages/Posts";
+import { postsLoader } from "src/pages/Posts/Posts";
 import UserPost from "src/pages/Posts/UserPost";
 
 export const router = createBrowserRouter([
   {
     path: "/",
+    id: "root",
+    loader: homeLoader,
     Component: RootLayout,
     ErrorBoundary: ErrorBoundary,
     children: [
       {
         index: true,
-        loader: homeLoader,
         Component: Home,
       },
       {
         path: ":userId/posts",
+        loader: postsLoader,
         Component: Posts,
       },
       {

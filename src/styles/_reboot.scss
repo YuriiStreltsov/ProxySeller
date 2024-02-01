@@ -44,6 +44,7 @@
 // scss-docs-start reboot-body-rules
 body {
   margin: 0; // 1
+  height: 100vh;
   font-family: var(--#{$prefix}body-font-family);
   @include font-size(var(--#{$prefix}body-font-size));
   font-weight: var(--#{$prefix}body-font-weight);
@@ -55,14 +56,11 @@ body {
   -webkit-tap-highlight-color: rgba($black, 0); // 4
 }
 
-body {
-  height: 100vh;
-}
-
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: $gray-100;
 }
 // scss-docs-end reboot-body-rules
 
