@@ -1,23 +1,52 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import AlbumsAPI, { type Photos as TPhotos } from "src/service/album/AlbumsAPI";
 import styles from "./Photos.module.scss";
 
-type PhotosProps = {
+type PhotoGalleryProps = {
   albumId: string;
 };
 
-export default function Photos({ albumId }: PhotosProps) {
-  const [photos, setPhotos] = useState<TPhotos[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+type State = {
+  photos: TPhotos[];
+  isLoading: boolean;
+  fullscreenUrl: string;
+};
+
+type Action =
+  | { type: "SET_PHOTOS"; payload: TPhotos[] }
+  | { type: "SET_IS_LOADING"; payload: boolean }
+  | { type: "SET_FULLSCREEN_URL"; payload: string };
+
+const initialState: State = {
+  photos: [],
+  isLoading: false,
+  fullscreenUrl: "",
+};
+
+function reducer(state: State, action: Action): State {
+  switch (action.type) {
+    case "SET_PHOTOS":
+      return { ...state, photos: action.payload };
+    case "SET_IS_LOADING":
+      return { ...state, isLoading: action.payload };
+    case "SET_FULLSCREEN_URL":
+      return { ...state, fullscreenUrl: action.payload };
+    default:
+      return state;
+  }
+}
+
+export default function PhotoGallery({ albumId }: PhotoGalleryProps) {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { photos, isLoading, fullscreenUrl } = state;
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [fullscreenUrl, setFullscreenUrl] = useState("");
 
   useEffect(() => {
     async function fetchPhotos() {
-      setIsLoading(true);
+      dispatch({ type: "SET_IS_LOADING", payload: true });
       const photos = await AlbumsAPI.getAlbumPhotos<TPhotos[]>(albumId);
-      setPhotos(photos);
-      setIsLoading(false);
+      dispatch({ type: "SET_PHOTOS", payload: photos });
+      dispatch({ type: "SET_IS_LOADING", payload: false });
     }
 
     fetchPhotos();
@@ -25,9 +54,9 @@ export default function Photos({ albumId }: PhotosProps) {
 
   function toggleModal(url?: string) {
     if (url) {
-      setFullscreenUrl(url);
+      dispatch({ type: "SET_FULLSCREEN_URL", payload: url });
     } else {
-      setFullscreenUrl("");
+      dispatch({ type: "SET_FULLSCREEN_URL", payload: "" });
     }
 
     setIsOpenModal(!isOpenModal);
@@ -59,7 +88,7 @@ export default function Photos({ albumId }: PhotosProps) {
             <li
               key={photo.id}
               className="col cursor-pointer"
-              onClick={() => toggleModal(photo.url)}
+              onClick={toggleModal.bind(null, photo.url)}
             >
               <div className="card h-100 mb-4">
                 <img
@@ -78,7 +107,7 @@ export default function Photos({ albumId }: PhotosProps) {
         <div
           id="full-screen-image-modal"
           className={styles.overlay}
-          onClick={() => toggleModal()}
+          onClick={toggleModal.bind(null, "")}
         >
           <div>
             <img src={fullscreenUrl} alt="fullscreen image" />

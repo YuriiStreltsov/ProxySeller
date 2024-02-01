@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { useLocation, useNavigate, useRoutes } from "react-router-dom";
 import { type Album as TAlbum } from "src/service/album/AlbumsAPI";
-import Photos from "../Photos/Photos";
+import PhotoGallery from "../PhotoGallery/PhotoGallery";
 
 type AlbumProps = {
   album: TAlbum;
@@ -19,7 +17,7 @@ export default function Album({ album, username }: AlbumProps) {
         <div className="card-body">
           <h5 className="card-title text-center mb-5">{album.title}</h5>
 
-          <Photos albumId={album.id} />
+          <PhotoGallery albumId={album.id} />
         </div>
       </div>
     </>
