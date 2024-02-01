@@ -13,6 +13,14 @@ export type Album = {
   title: string;
 };
 
+export type Photos = {
+  userId: string;
+  id: string;
+  title: string;
+  url: string;
+  thumbnailUrl: string;
+};
+
 async function getAlbumsByUserId<TResponse>(id: string) {
   const albums = await requestHandler<TResponse>(
     `${config.url}/users/${id}/albums`,
@@ -34,4 +42,15 @@ async function getAlbumById<TResponse>(userId: string, albumId: string) {
   return albums;
 }
 
-export default { getAlbumsByUserId, getAlbumById };
+async function getAlbumPhotos<TResponse>(albumId: string) {
+  const albums = await requestHandler<TResponse>(
+    `${config.url}/album/${albumId}/photos`,
+    {
+      ...config.options,
+    }
+  );
+
+  return albums;
+}
+
+export default { getAlbumsByUserId, getAlbumById, getAlbumPhotos };

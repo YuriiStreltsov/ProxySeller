@@ -7,6 +7,7 @@ import Home, { homeLoader } from "src/pages/Home";
 import Posts, { postsLoader } from "src/pages/Posts";
 import UserPost, { postLoader } from "src/pages/UserPost";
 import UsersAPI from "src/service/users/UsersAPI";
+import Photos from "src/Components/Photos/Photos";
 
 export const router = createBrowserRouter([
   {

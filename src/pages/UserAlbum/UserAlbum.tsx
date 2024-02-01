@@ -1,4 +1,5 @@
 import {
+  Outlet,
   Params,
   useLoaderData,
   useParams,
@@ -6,6 +7,7 @@ import {
 } from "react-router-dom";
 import Album from "src/Components/Album";
 import ErrorBoundary from "src/Components/ErrorBoundary";
+import Photos from "src/Components/Photos/Photos";
 import AlbumsAPI, { type Album as TAlbum } from "src/service/album/AlbumsAPI";
 import { User } from "src/service/users/UsersAPI";
 
