@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import ErrorBoundary from "src/Components/ErrorBoundary";
 import RootLayout from "src/Components/RootLayout";
-import Albums from "src/pages/Albums";
-import UserAlbum from "src/pages/Albums/UserAlbum";
+import Albums, { albumsLoader } from "src/pages/Albums";
+import UserAlbum, { albumLoader } from "src/pages/UserAlbum";
 import Home, { homeLoader } from "src/pages/Home";
 import Posts, { postsLoader } from "src/pages/Posts";
 import UserPost, { postLoader } from "src/pages/UserPost";
@@ -33,10 +33,12 @@ export const router = createBrowserRouter([
       },
       {
         path: ":userId/albums",
+        loader: albumsLoader,
         Component: Albums,
       },
       {
         path: ":userId/albums/:albumId",
+        loader: albumLoader,
         Component: UserAlbum,
       },
     ],

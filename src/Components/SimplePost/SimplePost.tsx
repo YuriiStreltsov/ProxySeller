@@ -1,5 +1,4 @@
 import { Post } from "src/service/posts/PostsAPI";
-import ErrorBoundary from "../ErrorBoundary";
 
 type PostProps = {
   post: Post;

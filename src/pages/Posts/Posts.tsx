@@ -20,7 +20,6 @@ export default function Posts() {
   const { userId } = useParams<"userId">();
 
   const user = users.find((user) => user.id.toString() === userId);
-  console.log(user);
 
   if (!user) {
     return (

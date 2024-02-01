@@ -9,6 +9,7 @@ type ErrorBoundaryProps = {
 
 export default function ErrorBoundary({ message }: ErrorBoundaryProps) {
   const error = useRouteError() as Error;
+  console.error(error);
 
   return (
     <div className={s.page}>
