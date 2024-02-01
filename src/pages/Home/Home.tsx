@@ -9,9 +9,9 @@ export async function homeLoader() {
 export default function Home() {
   const users = useLoaderData() as User[];
   return (
-    <>
+    <div className="container">
       {/* User cards */}
       <UserList users={users} />
-    </>
+    </div>
   );
 }
