@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Header from "../Header";
+import Footer from "../Footer";
 
 export default function RootLayout() {
   return (
@@ -8,9 +9,7 @@ export default function RootLayout() {
       <main className="flex-shrink-0">
         <Outlet />
       </main>
-      <footer className="mt-auto">
-        <div>Footer</div>
-      </footer>
+      <Footer />
     </>
   );
 }
