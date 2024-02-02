@@ -4,11 +4,20 @@ export default function Footer() {
       <div className="container">
         <p className="mb-0 text-center text-dark">
           Powered by{" "}
-          <a href="mailto: strela.yurii@gmail.com" className="fw-bold">
+          <a
+            href="mailto: strela.yurii@gmail.com"
+            className="fw-bold link-success"
+          >
             Yurii Streltsov
           </a>
-          . Source code{" "}
-          <a href="https://github.com/YuriiStreltsov/ProxySeller">here</a>.
+          . To view the source code,{" "}
+          <a
+            href="https://github.com/YuriiStreltsov/ProxySeller"
+            className="link-secondary"
+          >
+            click here
+          </a>
+          .
         </p>
       </div>
     </footer>
