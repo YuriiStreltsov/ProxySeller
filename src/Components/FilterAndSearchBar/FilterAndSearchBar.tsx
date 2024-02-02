@@ -38,7 +38,7 @@ export default function FilterAndSearchBar<T>({
 
   return (
     <div className="row">
-      <div className="col-3">
+      <div className="col-sm-3">
         <div className="input-group mb-3">
           <span className="input-group-text" id="basic-addon1">
             <i className="mdi mdi-magnify" />
@@ -53,7 +53,7 @@ export default function FilterAndSearchBar<T>({
         </div>
       </div>
 
-      <div className="col-3">
+      <div className="col-sm-4">
         <div className="input-group mb-3">
           <span className="input-group-text" id="basic-addon1">
             <i className="mdi mdi-filter-outline" />

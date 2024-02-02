@@ -8,14 +8,14 @@ type UserListProps = {
 export default function UserList({ users }: UserListProps) {
   return (
     <>
-      <ul className="row list-unstyled">
+      <ul className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 list-unstyled">
         {users.length > 0 &&
           users.map((user) => (
-            <li key={user.id} className="col-sm-4">
-              <div className="card mb-3">
+            <li key={user.id} className="col">
+              <div className="card h-100 mb-3">
                 <div className="card-body">
                   <h5 className="card-title text-center">{user.username}</h5>
-                  <div className="d-flex justify-content-between">
+                  <div className="d-flex justify-content-around">
                     <Link to={`${user.id}/posts`} className="card-link">
                       Posts
                     </Link>
